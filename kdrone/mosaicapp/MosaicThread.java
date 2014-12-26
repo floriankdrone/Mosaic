@@ -35,9 +35,9 @@ public class MosaicThread implements Runnable {
 		logger_.fine("Tile Size determined: width= "+MosaicParameter.TILE_WIDTH+ " and height= "+MosaicParameter.TILE_HEIGHT);
 		photoModel_ = new Photo(MosaicParameter.MOSAIC_MODEL_FILENAME);;
 		logger_.log(Level.FINE,
-				"Create a mosaic with model " + photoModel.getAbsolutePath());
-		photoModelWidth_ = photoModel.getWidth();
-		photoModelHeight_ = photoModel.getHeight();
+				"Create a mosaic with model " + photoModel_.getAbsolutePath());
+		photoModelWidth_ = photoModel_.getWidth();
+		photoModelHeight_ = photoModel_.getHeight();
 		photoChunkWidth_ = photoModelWidth_ / MosaicParameter.MOSAIC_COLS;
 		photoChunkHeight_ = photoModelHeight_ / MosaicParameter.MOSAIC_ROWS;
 		photoHashtable_ = new Hashtable<Integer, ArrayList<Photo>>();
