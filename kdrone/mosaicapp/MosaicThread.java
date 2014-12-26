@@ -29,7 +29,7 @@ public class MosaicThread implements Runnable {
 	private int photoModelWidth_, photoModelHeight_,
 			photoChunkWidth_, photoChunkHeight_;
 
-	public MosaicThread(Photo photoModel) {
+	public MosaicThread() {
 		initializeLogger();
 		logger_.log(Level.FINER, "beg.");
 		logger_.fine("Tile Size determined: width= "+MosaicParameter.TILE_WIDTH+ " and height= "+MosaicParameter.TILE_HEIGHT);
