@@ -49,22 +49,28 @@ public class MosaicThread implements Runnable {
 	public void run() {
 		long start = System.currentTimeMillis();
 		logger_.log(Level.FINER, "beg.");
-		long preCalTime = populatePhotoList();
-		splitMainPhoto();
-		Mosaic mosaic = new Mosaic(mosaicTiles_, photoModelWidth_,
+		if (populatePhotoList())
+		{
+			splitMainPhoto();
+			Mosaic mosaic = new Mosaic(mosaicTiles_, photoModelWidth_,
 				photoModelHeight_);
-		Photo photoMosaic = mosaic.generate();
-		photoMosaic.createPhoto();
+			Photo photoMosaic = mosaic.generate();
+			photoMosaic.createPhoto();
+		}
 		logger_.log(Level.FINER, "end.");
 		long end = System.currentTimeMillis();
-		logger_.log(Level.FINE, "PreCalTime duration = " + preCalTime);
 		logger_.log(Level.FINE, "Whole Thread duration = " + (end - start));
 	}
 
-	public long populatePhotoList() {
+	public boolean populatePhotoList() {
 		long start = System.currentTimeMillis();
 		logger_.log(Level.FINER, "beg");
 		File[] listOfFiles = photoFolder_.listFiles();
+		if (listOfFiles.length == 0)
+		{
+			logger_.log(Level.SEVERE, "No images found in directory " + photoFolder_.getAbsolutePath());
+			return false;
+		}
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile()) {
 				if (isPhotoType(listOfFiles[i])) {
@@ -87,7 +93,7 @@ public class MosaicThread implements Runnable {
 		logger_.log(Level.FINER, "end");
 		long end = System.currentTimeMillis();
 		logger_.log(Level.FINE, "Precalculation duration = " + (end - start));
-		return (end - start);
+		return true;
 	}
 
 	private void splitMainPhoto() {
