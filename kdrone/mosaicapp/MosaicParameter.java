@@ -11,5 +11,5 @@ public class MosaicParameter {
 	public static final int TILE_HEIGHT = MOSAIC_HEIGHT / MOSAIC_ROWS;
 	public static final int MAX_HUE_VALUE = 1;
 	public static final int NUMBER_OF_HUE_BUCKET = 10;
-	public static final String PHOTO_FOLDER_NAME = "C:\\Users\\Administrator\\workspace\\PhotoMosaic\\images\\";
+	public static final String PHOTO_FOLDER_NAME = "/home/admin/photos/";
 }
